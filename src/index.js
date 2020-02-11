@@ -1,4 +1,5 @@
 import path from 'path'
+import fs from 'fs'
 
 import meta from '../package'
 
@@ -7,23 +8,23 @@ const NuxtGettextModule = function (moduleOptions) {
     const options = { namespace: 'gettext', ...nuxtOptions, ...moduleOptions }
     const { namespace } = options
 
-    for (const relPath of ['plugins/index.js']) {
+    const pluginsDir = path.join(__dirname, 'plugins')
+    fs.readdirSync(pluginsDir).map((fileName) => {
         this.addPlugin({
-            src: path.resolve(__dirname, relPath),
-            fileName: path.join(namespace, relPath),
+            src: path.join(pluginsDir, fileName),
+            fileName: path.join(namespace, 'plugins', fileName),
             options
         })
-    }
+    })
 
-    const templateList = ['component', 'options', 'interpolate', 'plurals', 'translate', 'middleware']
-    for (const tpl of templateList) {
-        const relPath = 'templates/' + tpl + '.js'
+    const templatesDir = path.join(__dirname, 'templates')
+    fs.readdirSync(templatesDir).map((fileName) => {
         this.addTemplate({
-            src: path.resolve(__dirname, relPath),
-            fileName: path.join(namespace, relPath),
+            src: path.join(templatesDir, fileName),
+            fileName: path.join(namespace, 'templates', fileName),
             options
         })
-    }
+    })
 
     this.options.router.middleware.push(namespace)
 }

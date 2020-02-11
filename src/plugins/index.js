@@ -1,7 +1,7 @@
-import Component from '../templates/component'
+import component from '../templates/component'
 import options from '../templates/options'
+import mixin from '../templates/mixin'
 import translate from '../templates/translate'
-import interpolate from '../templates/interpolate'
 import Vue from 'vue'
 import Cookie from 'cookie-universal'
 import serverLocale from 'accept-language-parser'
@@ -9,60 +9,10 @@ import { getUserLocales as clientLocale } from 'get-user-locale'
 
 import '../templates/middleware'
 
-Vue.component('translate', Component)
-// if (!Object.prototype.hasOwnProperty.call(Vue.prototype, '$gettext')) {
-//     Object.defineProperties(Vue.prototype, {
-//         $gettext: {
-//             get () {
-//                 return (msgid) => {
-//                     if (!this._gettextShouldRetranslate) {
-//                         console.log('prepare force update')
-//                         Vue.nextTick(() => {
-//                             console.log('force update')
-//                             this.$forceUpdate()
-//                             this._gettextShouldRetranslate = false
-//                         })
-//                     }
-//                     this._gettextShouldRetranslate = true
-//                     return translate.gettext(msgid)
-//                 }
-//             }
-//         }
-//     })
-// }
-Vue.prototype.$gettext = translate.gettext.bind(translate)
-Vue.prototype.$pgettext = translate.pgettext.bind(translate)
-Vue.prototype.$ngettext = translate.ngettext.bind(translate)
-Vue.prototype.$npgettext = translate.npgettext.bind(translate)
-Vue.prototype.$gettextInterpolate = interpolate.bind(interpolate)
+Vue.mixin(mixin)
+Vue.component(component.name, component)
 
-const NuxtGettextPlugin = function ({ app, req, res, beforeNuxtRender, nuxtState }, inject) {
-    let cookies
-    if (process.client) {
-        cookies = Cookie()
-    } else {
-        cookies = Cookie(req, res)
-    }
-
-    const supportedLocales = Object.keys(options.availableLanguages)
-    let locale = cookies.get(options.localeCookieKey)
-    if (!locale) {
-        if (process.server) {
-            locale = serverLocale.pick(supportedLocales, req.headers['accept-language'])
-        } else {
-            const clientLocales = clientLocale()
-            for (const l of clientLocales) {
-                if (supportedLocales.includes(l)) {
-                    locale = l
-                    break
-                }
-            }
-        }
-    }
-    if (!locale) {
-        locale = options.defaultLanguage
-    }
-
+export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
     translate.translations = {}
     if (process.server) {
         beforeNuxtRender(({ nuxtState }) => {
@@ -80,8 +30,36 @@ const NuxtGettextPlugin = function ({ app, req, res, beforeNuxtRender, nuxtState
         translate.translations = nuxtState.translations
     }
 
-    const languageVm = new Vue({
-        mixins: [options.languageVmMixin],
+    // const locale = options.defaultLocale
+
+    let cookies
+    if (process.client) {
+        cookies = Cookie()
+    } else {
+        cookies = Cookie(req, res)
+    }
+
+    const supportedLocales = Object.keys(options.availableLocales)
+    let locale = cookies.get(options.localeCookieKey)
+    if (!locale) {
+        if (process.server) {
+            locale = serverLocale.pick(supportedLocales, req.headers['accept-language'])
+        } else {
+            const clientLocales = clientLocale()
+            for (const l of clientLocales) {
+                if (supportedLocales.includes(l)) {
+                    locale = l
+                    break
+                }
+            }
+        }
+    }
+    if (!locale) {
+        locale = options.defaultLocale
+    }
+
+    const vm = new Vue({
+        mixins: [options.localeVmMixin],
         data () {
             return {
                 // set this
@@ -97,10 +75,8 @@ const NuxtGettextPlugin = function ({ app, req, res, beforeNuxtRender, nuxtState
             }
         },
         async created () {
-            this.available = options.availableLanguages
+            this.available = options.availableLocales
             await this.loadLocale(this.current)
-        },
-        destroy () {
         },
         methods: {
             async loadLocale (newLocale) {
@@ -120,7 +96,5 @@ const NuxtGettextPlugin = function ({ app, req, res, beforeNuxtRender, nuxtState
         }
     })
 
-    inject('language', languageVm)
+    inject('locale', vm)
 }
-
-export default NuxtGettextPlugin

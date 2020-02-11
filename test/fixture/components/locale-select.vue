@@ -7,12 +7,19 @@ export default {
 <template>
   <div class="locale-select">
     <a
-      v-for="(l, k) in $language.available"
+      v-for="(l, k) in $locale.available"
       :key="k"
       href="javascript:void(0);"
-      @click="$language.current = k"
+      @click="$locale.current = k"
     >
       {{ l }}
     </a>
   </div>
 </template>
+
+<style>
+  .locale-select > a {
+    padding: 2px 4px;
+    margin: 0 3px;
+  }
+</style>

@@ -1,13 +1,36 @@
 <template>
   <div>
-    <h1>nuxt-gettext</h1>
-    <locale-select />
+    <locale-select class="locale-select" />
+    <div>
+      <nuxt-link to="/">
+        <translate>page.home</translate>
+      </nuxt-link>
+      <nuxt-link to="/assert">
+        <translate>page.assert</translate>
+      </nuxt-link>
+    </div>
+    <h1>{{ title }}</h1>
+    <translate tag="h2">
+      title
+    </translate>
     <nuxt-child />
   </div>
 </template>
 <script>
 import LocaleSelect from '../components/locale-select'
+
 export default {
-    components: { LocaleSelect }
+    components: { LocaleSelect },
+    computed: {
+        title () {
+            return this.$gettext('title')
+        }
+    }
 }
 </script>
+
+<style>
+    .locale-select {
+        float: right;
+    }
+</style>

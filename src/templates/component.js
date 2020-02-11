@@ -61,11 +61,11 @@ export default {
     computed: {
         translation () {
             const translation = translate.getTranslation(
+                this.$locale.asyncCurrent,
                 this.msgid,
                 this.translateN,
                 this.translateContext,
-                this.isPlural ? this.translatePlural : null,
-                this.$language.asyncCurrent
+                this.isPlural ? this.translatePlural : null
             )
 
             let context = this.$parent
