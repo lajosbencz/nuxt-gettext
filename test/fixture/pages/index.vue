@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>nuxt-gettext</h1>
+        <translate>translation</translate>
     </div>
 </template>
 
