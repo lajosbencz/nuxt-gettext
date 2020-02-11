@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <translate>translation</translate>
-    </div>
+  <div>
+    <translate>translation</translate>
+  </div>
 </template>
 
 <script>
-    export default {
+export default {
 
-    }
+}
 </script>
 
 <style>

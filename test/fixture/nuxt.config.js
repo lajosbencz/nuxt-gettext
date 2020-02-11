@@ -11,8 +11,8 @@ module.exports = {
         [resolve(__dirname, '..', '..', 'lib', 'module.js'), {
             defaultLanguage: 'en_US',
             availableLanguages: {
-                'en_US' : 'English',
-                'hu_HU' : 'Magyar',
+                en_US: 'English',
+                hu_HU: 'Magyar'
             }
         }]
     ],

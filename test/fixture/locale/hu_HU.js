@@ -1,3 +1,3 @@
 export default {
-    'translation': 'Fordítás',
+    translation: 'Fordítás'
 }
