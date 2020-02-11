@@ -8,7 +8,6 @@ module.exports = {
         resourceHints: false
     },
     modules: [
-        'cookie-universal-nuxt',
         [resolve(__dirname, '..', '..', 'lib', 'module.js'), {
             defaultLanguage: 'en_US',
             availableLanguages: {

@@ -46,7 +46,7 @@
     "standard-version": "latest"
   },
   "dependencies": {
-    "uuid": "^3.4.0",
-    "cookie-universal-nuxt": "^2.1.1"
+    "cookie-universal": "^2.1.1",
+    "uuid": "^3.4.0"
   }
 }
