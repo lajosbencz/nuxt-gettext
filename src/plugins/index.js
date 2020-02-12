@@ -96,5 +96,11 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         }
     })
 
+    Object.defineProperty(vm, 'translations', {
+        get () {
+            return translate.translations
+        }
+    })
+
     inject('locale', vm)
 }

@@ -1,6 +1,5 @@
 import path from 'path'
 import fs from 'fs'
-
 import meta from '../package'
 
 const NuxtGettextModule = function (moduleOptions) {
