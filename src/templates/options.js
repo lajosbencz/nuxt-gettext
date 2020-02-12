@@ -1,12 +1,12 @@
 export default {
     ...{
         namespace: 'gettext',
-        localeCookieKey: '_nuxt_gettext_locale',
-        defaultLocale: 'en_US',
-        availableLocales: {
+        languageCookieKey: '_nuxt_gettext_language',
+        defaultLanguage: 'en_US',
+        availableLanguages: {
             en_US: 'English'
         },
-        localeVmMixin: {},
+        languageVmMixin: {},
         silent: false
     },
     ...JSON.parse('<%= JSON.stringify(options) %>')

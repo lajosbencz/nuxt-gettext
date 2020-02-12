@@ -11,7 +11,7 @@ export default {
          * @return {String} The translated string
         */
         $gettext (msgid) {
-            return translate.getTranslation(this.$locale.asyncCurrent, msgid)
+            return translate.getTranslation(this.$language.asyncCurrent, msgid)
         },
 
         /*
@@ -24,7 +24,7 @@ export default {
          * @return {String} The translated string
         */
         $pgettext (context, msgid) {
-            return translate.getTranslation(this.$locale.asyncCurrent, msgid, 1, context)
+            return translate.getTranslation(this.$language.asyncCurrent, msgid, 1, context)
         },
 
         /*
@@ -39,7 +39,7 @@ export default {
          * @return {String} The translated string
         */
         $ngettext (msgid, plural, n) {
-            return translate.getTranslation(this.$locale.asyncCurrent, msgid, n, null, plural)
+            return translate.getTranslation(this.$language.asyncCurrent, msgid, n, null, plural)
         },
 
         /*
@@ -55,7 +55,7 @@ export default {
          * @return {String} The translated string
         */
         $npgettext (context, msgid, plural, n) {
-            return translate.getTranslation(this.$locale.asyncCurrent, msgid, n, context, plural)
+            return translate.getTranslation(this.$language.asyncCurrent, msgid, n, context, plural)
         },
 
         $gettextInterpolate (msgid, context = {}, disableHtmlEscaping = false) {

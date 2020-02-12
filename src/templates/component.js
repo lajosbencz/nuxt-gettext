@@ -61,7 +61,7 @@ export default {
     computed: {
         translation () {
             const translation = translate.getTranslation(
-                this.$locale.asyncCurrent,
+                this.$language.asyncCurrent,
                 this.msgid,
                 this.translateN,
                 this.translateContext,

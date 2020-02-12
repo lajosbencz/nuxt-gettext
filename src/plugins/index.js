@@ -30,8 +30,6 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         translate.translations = nuxtState.translations
     }
 
-    // const locale = options.defaultLocale
-
     let cookies
     if (process.client) {
         cookies = Cookie()
@@ -39,8 +37,8 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         cookies = Cookie(req, res)
     }
 
-    const supportedLocales = Object.keys(options.availableLocales)
-    let locale = cookies.get(options.localeCookieKey)
+    const supportedLocales = Object.keys(options.availableLanguages)
+    let locale = cookies.get(options.languageCookieKey)
     if (!locale) {
         if (process.server) {
             locale = serverLocale.pick(supportedLocales, req.headers['accept-language'])
@@ -55,11 +53,11 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         }
     }
     if (!locale) {
-        locale = options.defaultLocale
+        locale = options.defaultLanguage
     }
 
     const vm = new Vue({
-        mixins: [options.localeVmMixin],
+        mixins: [options.languageVmMixin],
         data () {
             return {
                 // set this
@@ -70,12 +68,12 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         },
         watch: {
             async current (newLocale) {
-                cookies.set(options.localeCookieKey, newLocale)
+                cookies.set(options.languageCookieKey, newLocale)
                 await this.loadLocale(newLocale)
             }
         },
         async created () {
-            this.available = options.availableLocales
+            this.available = options.availableLanguages
             await this.loadLocale(this.current)
         },
         methods: {
@@ -102,5 +100,5 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         }
     })
 
-    inject('locale', vm)
+    inject('language', vm)
 }

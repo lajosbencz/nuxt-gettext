@@ -9,8 +9,8 @@ module.exports = {
     },
     modules: [
         [resolve(__dirname, '..', '..', 'src', 'index.js'), {
-            defaultLocale: 'hu-HU',
-            availableLocales: {
+            defaultLanguage: 'hu-HU',
+            availableLanguages: {
                 'en-GB': 'British English',
                 'en-US': 'United States English',
                 'hu-HU': 'Magyar'
