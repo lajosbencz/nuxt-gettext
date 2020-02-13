@@ -1,9 +1,17 @@
 <template>
   <div>
-    <p>
-      <translate>translation</translate>
+    <translate tag="h2" translate-plural="titles" :translate-n="1">
+      title
+    </translate>
+    <translate tag="h3" translate-context="ctx" translate-plural="titles" :translate-n="2">
+      title
+    </translate>
+    <p :title="$gettext('translation.tpl.tooltip')">
+      <translate>translation.tpl.tag</translate>
       |
-      {{ $gettext('translation') }}
+      <span v-translate>translation.tpl.attr</span>
+      |
+      {{ $gettext('translation.tpl.call') }}
       |
       {{ comp }}
     </p>
@@ -14,7 +22,7 @@
 export default {
     computed: {
         comp () {
-            return this.$gettext('translation')
+            return this.$gettext('translation.tpl.computed')
         }
     }
 }

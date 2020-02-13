@@ -10,9 +10,6 @@
       </nuxt-link>
     </div>
     <h1>{{ title }}</h1>
-    <translate tag="h2">
-      title
-    </translate>
     <nuxt-child />
   </div>
 </template>
