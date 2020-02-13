@@ -4,3 +4,4 @@ test/
 .eslintrc.js
 jest.config.js
 package-lock.json
+coverage/
