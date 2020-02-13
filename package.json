@@ -44,6 +44,7 @@
     "jest": "latest",
     "nuxt-edge": "^2.6.2-25915688.22138535",
     "standard-version": "latest",
+    "tough-cookie": "^3.0.1",
     "vue-gettext-extract": "^0.1.4"
   },
   "dependencies": {
