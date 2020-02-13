@@ -70,3 +70,8 @@ The main difference is that translation JSON files are lazy-loaded, but at the p
 Translation files __MUST__ be placed under ```~/locale/*.json```
 
 Directives are also not supported, it's impossible (afaik) to get the text content of the node on the server.
+
+### Todo
+ * Tests
+ * Integrate with vue router
+ * Integrate with [vue-meta](https://github.com/nuxt/vue-meta)
