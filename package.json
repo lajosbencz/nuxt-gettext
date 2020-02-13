@@ -1,6 +1,6 @@
 {
   "name": "nuxt-gettext",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Translation module utilizing the gettext ecosystem",
   "main": "lib/module.js",
   "scripts": {
