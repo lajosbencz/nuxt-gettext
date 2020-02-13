@@ -45,8 +45,6 @@ export default {
     <p :title="$gettext('translation.tpl.tooltip')">
       <translate>translation.tpl.tag</translate>
       |
-      <span v-translate>translation.tpl.attr</span>
-      |
       {{ $gettext('translation.tpl.call') }}
       |
       {{ comProp }}
