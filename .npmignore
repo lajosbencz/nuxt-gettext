@@ -1,0 +1,6 @@
+.idea/
+test/
+.eslintignore
+.eslintrc.js
+jest.config.js
+package-lock.json
