@@ -1,5 +1,5 @@
 
-import { setup, loadConfig, get } from '@nuxtjs/module-test-utils'
+const { setup, loadConfig, get } = require('@nuxtjs/module-test-utils')
 
 describe('basic', () => {
     let nuxt
