@@ -2,7 +2,7 @@
   "name": "nuxt-gettext",
   "version": "0.1.6",
   "description": "Translation module utilizing the gettext ecosystem",
-  "main": "lib/module.js",
+  "main": "src/index.js",
   "scripts": {
     "dev": "nuxt test/fixture",
     "lint": "eslint --fix lib test",
