@@ -18,7 +18,7 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
         beforeNuxtRender(({ nuxtState }) => {
             let translations = {}
             try {
-                translations = require('~/locale/' + locale + '.json')
+                translations = require('~~/locale/' + locale + '.json')
             } catch (e) {
                 console.error(e)
             }

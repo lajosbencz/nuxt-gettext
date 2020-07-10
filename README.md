@@ -67,7 +67,7 @@ This packages was inspired by [vue-gettext](https://github.com/Polyconseil/vue-g
  so the API mostly follows that.
  
 The main difference is that translation JSON files are lazy-loaded, but at the price of configurability:
-Translation files __MUST__ be placed under ```~/locale/*.json```
+Translation files __MUST__ be placed under ```~~/locale/*.json```, in the root folder.
 
 Directives are also not supported, it's impossible (afaik) to get the text content of the node on the server.
 
