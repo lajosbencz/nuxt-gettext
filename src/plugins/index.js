@@ -81,7 +81,7 @@ export default function ({ req, res, beforeNuxtRender, nuxtState }, inject) {
                 if (!Object.prototype.hasOwnProperty.call(translate.translations, newLocale)) {
                     try {
                         // @todo dynamically load resource with configurable path
-                        const module = await import(/* webpackChunkName: "locale/[request]" */ '~/locale/' + newLocale + '.json')
+                        const module = await import(/* webpackChunkName: "locale/[request]" */ '~~/locale/' + newLocale + '.json')
                         translate.translations[newLocale] = module.default
                     } catch (e) {
                         translate.translations[newLocale] = {}
